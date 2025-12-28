@@ -34,3 +34,4 @@ async function sendVerificationEmail(to, link) {
 }
 
 module.exports = { sendVerificationEmail };
+
