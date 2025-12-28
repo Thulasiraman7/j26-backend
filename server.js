@@ -13,11 +13,13 @@ app.use(cors());
 const userRoutes = require('./routes/user');
 const chatRoutes = require('./routes/chat');
 const messageRoutes = require('./routes/message');
+const authRoutes = require('./routes/auth');   // ✅ NEW
 
 // Mount routes
 app.use('/user', userRoutes);
 app.use('/chats', chatRoutes);
 app.use('/messages', messageRoutes);
+app.use('/auth', authRoutes);                  // ✅ NEW
 
 // Health check route
 app.get('/', (_, res) => res.json({ status: 'OK' }));
@@ -25,7 +27,7 @@ app.get('/', (_, res) => res.json({ status: 'OK' }));
 // Connect DB and start server
 const PORT = process.env.PORT || 5000;
 mongoose
-  .connect(process.env.MONGO_URI)   // ✅ removed old options
+  .connect(process.env.MONGO_URI)
   .then(() => {
     app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
   })
